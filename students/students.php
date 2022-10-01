@@ -51,9 +51,11 @@ function try_walk($students, $key_student, $data){
 function try_walk_student($student, $key_student){
   print "<div style=\"color: #000; border: 3px #000 solid; background: #e6e6e6;\">";
 
-  if (!is_array($key_student))
-      echo "$key_student:{$student[$key_student]}\t<br>";
-    else {
+  if (!is_array($key_student)){
+    $value = $student[$key_student];
+    echo "$key_student:$value\t<br>";
+  }
+  else {
         echo "$key_student: ";
         foreach ($student[$key_student] as $k => $v)
           echo "{$k} - $v; <br>";
@@ -101,4 +103,3 @@ for($i = 0; $i < count($students); $i++){
   print "№$number";
   array_walk($students[$i], "try_walk_student");
 }
-
