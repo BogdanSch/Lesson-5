@@ -43,8 +43,8 @@ function try_walk($country, $key_country, $data){
             echo "[{$k} рік. - $v]; <br>";
           }
     }
-    print "</div>";
       echo "Average population: ". array_sum($country['population']) / count($country['population']);
+      print "</div>";
       echo "\n";
       $i++;
   }
