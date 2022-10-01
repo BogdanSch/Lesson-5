@@ -48,19 +48,19 @@ function try_walk($students, $key_student, $data){
     print "</div>";
     $i++;
 }
-function try_walk_student($student, $key_student, $data){
-  print_r($student);
-  echo "<br><strong>".$data."</strong> <br>";
+function try_walk_student($student, $key_student){
   print "<div style=\"color: #000; border: 3px #000 solid; background: #e6e6e6;\">";
-  foreach ($student as $key => $value) {
-    if (!is_array($value))
-      echo "$key:$value\t<br>";
+
+  if (!is_array($key_student))
+      echo "$key_student:{$student[$key_student]}\t<br>";
     else {
-        echo "$key: ";
-        foreach ($value as $k => $v)
+        echo "$key_student: ";
+        foreach ($student[$key_student] as $k => $v)
           echo "{$k} - $v; <br>";
     }
-  }
+  // foreach ($student as $key => $value) {
+    
+  // }
 }
 function cmp_name($a, $b){
   return $a["name"] <=> $b["name"];
@@ -97,16 +97,8 @@ array_walk($students, "try_walk", "№");
 
 //Task2
 for($i = 0; $i < count($students); $i++){
-  foreach ($students[$i] as $key => $value) {
-    if (!is_array($value))
-      echo "$key:$value\t<br>";
-    else {
-        echo "$key: ";
-        foreach ($value as $k => $v)
-          echo "{$k} - $v; <br>";
-    }
-  }
   $number = $i+1;
-  array_walk($students[$i], "try_walk_student", "№{$number}");
+  print "№$number";
+  array_walk($students[$i], "try_walk_student");
 }
 
