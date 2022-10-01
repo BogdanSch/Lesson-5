@@ -48,22 +48,6 @@ function try_walk($students, $key_student, $data){
     print "</div>";
     $i++;
 }
-function try_walk_student($student, $key_student){
-  print "<div style=\"color: #000; border: 3px #000 solid; background: #e6e6e6;\">";
-
-  if (!is_array($key_student)){
-    $value = $student[$key_student];
-    echo "$key_student:$value\t<br>";
-  }
-  else {
-        echo "$key_student: ";
-        foreach ($student[$key_student] as $k => $v)
-          echo "{$k} - $v; <br>";
-    }
-  // foreach ($student as $key => $value) {
-    
-  // }
-}
 function cmp_name($a, $b){
   return $a["name"] <=> $b["name"];
 }
@@ -96,10 +80,3 @@ array_walk($students, "try_walk", "№");
 echo "<h4>№ Name\tSurname\tYear\tMarks</h4>\n";
 uasort($students, "cmp_average_marks");
 array_walk($students, "try_walk", "№");
-
-//Task2
-for($i = 0; $i < count($students); $i++){
-  $number = $i+1;
-  print "№$number";
-  array_walk($students[$i], "try_walk_student");
-}
