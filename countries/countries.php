@@ -112,6 +112,25 @@ function cmp_population_average($a, $b){
     // else 
     //   return 1;
 }
+function search($countries, $data) {
+  $result = [];
+  foreach ($countries as $country_number => $country) {
+      foreach ($country as $key => $value) {
+          if (!is_array($value)) {
+              if (stristr($value, $data)) {
+                  $result[] = $country_number;
+              }
+          } else {
+              foreach ($value as $k => $v) {
+                  if (stristr($v, $data) || strstr($k, $data)) {
+                      $result[] = $country_number;
+                  }
+              }
+          }
+      }
+  }
+  return array_unique($result);
+}
 
 echo "\n<h4>№ Назва\tСтолиця\tПлоща\tНаселення</h4>\n\n";
 uasort($countries, "cmp_capital");
@@ -128,3 +147,8 @@ array_walk($countries, "try_walk", "№");
 echo "\n<h4>№ Назва\tСтолиця\tПлоща\tНаселення</h4>\n\n";
 uasort($countries, "cmp_population_average");
 array_walk($countries, "try_walk", "№");
+
+$search_result = array_flip(search($countries, "land"));
+$countries_search_result = array_intersect_key($countries, $search_result);
+array_walk($countries_search_result, "try_walk", "№");
+//print_r($countries_search_result);
